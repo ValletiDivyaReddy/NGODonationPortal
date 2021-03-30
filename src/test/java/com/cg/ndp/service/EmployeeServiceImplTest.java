@@ -72,16 +72,16 @@ public class EmployeeServiceImplTest {
 		assertTrue(empRepo.addNeedyPerson(person1));
 	}
 
-	@Test
-	public void testfindNeedyById() throws NoSuchNeedyPeopleException {
-		AddressEntity a1 = new AddressEntity(10001, "Bangalore", "Karnataka", "714323", "MGRoad");
-		int id = 1;
-		NeedyPeopleModel person1 = new NeedyPeopleModel(1, "ravi", "8965432212", 89000,"Vyshu@123", a1);
-		Mockito.when(empRepo.findNeedyPeopleById(id)).thenReturn(person1);
-		NeedyPeopleModel expected = new NeedyPeopleModel(1, "ravi", "8965432212", 89000,"Vyshu@123", a1);
-		NeedyPeopleModel actual = empRepo.findNeedyPeopleById(id);
-		assertEquals(expected, actual);
-	}
+//	@Test
+//	public void testfindNeedyById() throws NoSuchNeedyPeopleException {
+//		AddressEntity a1 = new AddressEntity(10001, "Bangalore", "Karnataka", "714323", "MGRoad");
+//		int id = 1;
+//		NeedyPeopleModel person1 = new NeedyPeopleModel(1, "ravi", "8965432212", 89000,"Vyshu@123", a1);
+//		Mockito.when(empRepo.findNeedyPeopleById(id)).thenReturn(person1);
+//		NeedyPeopleModel expected = new NeedyPeopleModel(1, "ravi", "8965432212", 89000,"Vyshu@123", a1);
+//		NeedyPeopleModel actual = empRepo.findNeedyPeopleById(id);
+//		assertEquals(expected, actual);
+//	}
 
 	@Test
 	public void testfindNeedyPeopleByName() throws NoSuchNeedyPeopleException {
