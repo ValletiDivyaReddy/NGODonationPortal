@@ -34,6 +34,16 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Autowired
 	private EMParser parser;
 
+	public EmployeeServiceImpl(NeedyPeopleRepo needypeopleRepo, EmployeeRepo empRepo,
+			DonationDistributionRepo donationRepo, EMParser parser) {
+		super();
+		this.needypeopleRepo = needypeopleRepo;
+		this.empRepo = empRepo;
+		this.donationRepo = donationRepo;
+		this.parser = new EMParser();
+	}
+
+
 	@Override
 	public boolean addNeedyPerson(NeedyPeopleModel person) throws DuplicateNeedyPersonException {
 		Boolean status = false;

@@ -18,6 +18,39 @@ public class DonationServiceImpl implements IDonationService {
 	@Autowired
 	private EMParser parser;
 
+	
+	public DonationServiceImpl(DonationRepo donationRepo, EMParser parser) {
+		super();
+		this.donationRepo = donationRepo;
+		this.parser = new EMParser();
+	}
+	
+	
+
+	public DonationRepo getDonationRepo() {
+		return donationRepo;
+	}
+
+
+
+	public void setDonationRepo(DonationRepo donationRepo) {
+		this.donationRepo = donationRepo;
+	}
+
+
+
+	public EMParser getParser() {
+		return parser;
+	}
+
+
+
+	public void setParser(EMParser parser) {
+		this.parser = parser;
+	}
+
+
+
 	@Transactional
 	@Override
 	public DonationModel add(DonationModel donationModel) {
