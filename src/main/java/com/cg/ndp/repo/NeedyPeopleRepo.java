@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.cg.ndp.entity.NeedyPeopleEntity;
 
 @Repository
-public interface NeedyPeopleRepo extends JpaRepository<NeedyPeopleEntity,Integer>{
+public interface NeedyPeopleRepo extends JpaRepository<NeedyPeopleEntity, Integer> {
 
-
-	Optional<NeedyPeopleEntity> findByNeedyPersonName( String needyPersonName);
+	Optional<NeedyPeopleEntity> findByNeedyPersonName(String needyPersonName);
 
 }

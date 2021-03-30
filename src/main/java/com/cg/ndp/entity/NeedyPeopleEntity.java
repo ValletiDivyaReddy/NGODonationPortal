@@ -9,39 +9,36 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="needypeople")
+@Table(name = "needypeople")
 public class NeedyPeopleEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@Column(name="needyPersonId")
+	@Column(name = "needyPersonId")
 	private int needyPersonId;
 
-	@Column(name="needyPersonName")
+	@Column(name = "needyPersonName")
 	private String needyPersonName;
-	
-	@Column(name="phone")
-	private String phone;
-	
-	@Column(name="familyIncome")
-	private double familyIncome;
-	
 
-	@Column(name="needyPeoplePassword")
+	@Column(name = "phone")
+	private String phone;
+
+	@Column(name = "familyIncome")
+	private double familyIncome;
+
+	@Column(name = "needyPeoplePassword")
 	private String needyPeoplePassword;
 	@OneToOne
 	private AddressEntity address;
 
-
-	@OneToMany(mappedBy="needyPersonId")
+	@OneToMany(mappedBy = "needyPersonId")
 	public Set<NeedyPeopleEntity> getAllNeedyPeople;
 
 	public NeedyPeopleEntity() {
-		
+
 	}
-	
-	
 
 	public NeedyPeopleEntity(int needyPersonId, String needyPersonName, String phone, double familyIncome,
 			String needyPeoplePassword, AddressEntity address) {
@@ -53,8 +50,6 @@ public class NeedyPeopleEntity implements Serializable {
 		this.needyPeoplePassword = needyPeoplePassword;
 		this.address = address;
 	}
-
-
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -100,7 +95,6 @@ public class NeedyPeopleEntity implements Serializable {
 		this.address = address;
 	}
 
-	
 	public Set<NeedyPeopleEntity> getGetAllNeedyPeople() {
 		return getAllNeedyPeople;
 	}
@@ -108,19 +102,14 @@ public class NeedyPeopleEntity implements Serializable {
 	public void setGetAllNeedyPeople(Set<NeedyPeopleEntity> getAllNeedyPeople) {
 		this.getAllNeedyPeople = getAllNeedyPeople;
 	}
-	
 
 	public String getNeedyPeoplePassword() {
 		return needyPeoplePassword;
 	}
 
-
-
 	public void setNeedyPeoplePassword(String needyPeoplePassword) {
 		this.needyPeoplePassword = needyPeoplePassword;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -137,8 +126,6 @@ public class NeedyPeopleEntity implements Serializable {
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -181,18 +168,11 @@ public class NeedyPeopleEntity implements Serializable {
 		return true;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "NeedyPeopleEntity [needyPersonId=" + needyPersonId + ", needyPersonName=" + needyPersonName + ", phone="
 				+ phone + ", familyIncome=" + familyIncome + ", needyPeoplePassword=" + needyPeoplePassword
-				+ ", address=" + address  + "]";
+				+ ", address=" + address + "]";
 	}
 
-	
-
-
-	
-	
 }

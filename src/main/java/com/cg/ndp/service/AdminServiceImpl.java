@@ -1,6 +1,7 @@
 package com.cg.ndp.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.ndp.entity.AdminEntity;
 import com.cg.ndp.entity.DonationDistributionEntity;
 import com.cg.ndp.entity.DonationDistributionStatus;
 import com.cg.ndp.entity.EmployeeEntity;
@@ -178,10 +180,13 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public boolean login(AdminModel admin) throws NoSuchAdminException {
 		boolean status = false;
-		if (adminRepo.findById(admin.getAdminId()).orElse(null).getAdminpassword() == admin.getAdminPassword()) {
-			status = true;
+		Optional<AdminEntity> ad=adminRepo.findById(admin.getAdminId());
+		if(ad.isPresent()) {
+			if (ad.get().getAdminpassword().equals(admin.getAdminPassword())) {
+				status = true;
+			}
 		} else {
-			throw new NoSuchAdminException("Invalid password / user");
+			throw new NoSuchAdminException("Invalid username/ password");
 		}
 		return status;
 	}

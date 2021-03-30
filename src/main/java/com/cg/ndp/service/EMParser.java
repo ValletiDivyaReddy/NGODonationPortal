@@ -12,6 +12,7 @@ import com.cg.ndp.entity.DonationType;
 import com.cg.ndp.entity.DonorEntity;
 import com.cg.ndp.entity.EmployeeEntity;
 import com.cg.ndp.entity.NeedyPeopleEntity;
+import com.cg.ndp.entity.NeedyRequest;
 import com.cg.ndp.entity.UserEntity;
 import com.cg.ndp.model.AddressModel;
 import com.cg.ndp.model.AdminModel;
@@ -21,6 +22,7 @@ import com.cg.ndp.model.DonationModel;
 import com.cg.ndp.model.DonorModel;
 import com.cg.ndp.model.EmployeeModel;
 import com.cg.ndp.model.NeedyPeopleModel;
+import com.cg.ndp.model.NeedyRequestModel;
 import com.cg.ndp.model.UserModel;
 import com.cg.ndp.repo.DonationItemRepo;
 import com.cg.ndp.repo.DonorRepo;
@@ -69,6 +71,18 @@ public class EMParser {
 		return source == null ? null
 				: new NeedyPeopleModel(source.getNeedyPersonId(), source.getNeedyPersonName(), source.getPhone(),
 						source.getFamilyIncome(), source.getNeedyPeoplePassword(), source.getAddress());
+	}
+
+	public NeedyRequest parse(NeedyRequestModel source) {
+		return source == null ? null
+				: new NeedyRequest(source.getNeedyPersonId(), source.getNeedyPersonName(), source.getPhone());
+
+	}
+
+	public NeedyRequestModel parse(NeedyRequest source) {
+		return source == null ? null
+				: new NeedyRequestModel(source.getNeedyPersonId(), source.getNeedyPersonName(), source.getPhone());
+
 	}
 
 	public AddressEntity parse(AddressModel source) {

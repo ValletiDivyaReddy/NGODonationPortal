@@ -23,6 +23,7 @@ public class UserController {
 	@PostMapping("/signIn")
 	public ResponseEntity<String> signIn(@RequestBody UserModel user) throws NoSuchDonorException {
 		ResponseEntity<String> response = null;
+		@SuppressWarnings("unused")
 		DonorModel donor = donorService.getById(user.getUserId());
 		if (user.getPassword().equals(user.getPassword())) {
 			response = new ResponseEntity<>("You Have Successfully Logged in", HttpStatus.OK);

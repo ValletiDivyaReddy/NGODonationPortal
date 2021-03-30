@@ -83,16 +83,16 @@ public class AdminServiceImplTest {
 
 	}
 
-//	@Test
-//	@DisplayName("EmployeeDetails should delete")
-//     void testRemoveEmployee() throws NoSuchEmployeeException {
-//		AddressModel a1 = new AddressModel(10001, "chennai", "TamilNadu", "677676", "Gandhi Hospital");
-//		int employee1 =   new EmployeeModel(101, "navya", "navya@gmail.com", "9090700123", "navya",
-//		"meg2123456", a1);
-//		Mockito.when(adminService.removeEmployee(employee1)).thenReturn(true);
-//		assertTrue(adminService.removeEmployee(employee1));
-//
-//	}
+	@Test
+	@DisplayName("EmployeeDetails should delete")
+     void testRemoveEmployee() throws NoSuchEmployeeException {
+		AddressModel a1 = new AddressModel(10001, "chennai", "TamilNadu", "677676", "Gandhi Hospital");
+		EmployeeModel employee1 =   new EmployeeModel(101, "navya", "navya@gmail.com", "9090700123", "navya",
+		"meg2123456", a1);
+		Mockito.when(adminService.removeEmployee(employee1.getEmployeeId())).thenReturn(true);
+		assertTrue(adminService.removeEmployee(employee1.getEmployeeId()));
+
+	}
 
 	@Test
 	@DisplayName("EmployeeDetails should display by using Id")

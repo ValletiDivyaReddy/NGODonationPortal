@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.cg.ndp.entity.AddressEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class NeedyPeopleModel implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +25,7 @@ public class NeedyPeopleModel implements Serializable {
 	@Max(value = 100000, message = "familyIncome cannot be more than 1 lakh")
 	private double familyIncome;
 
-	@JsonIgnore
+	// @JsonIgnore
 	@Pattern(regexp = "(?=.\\d)(?=.[a-z])(?=.*[A-Z]).{8,}", message = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters\" required")
 	private String needyPeoplePassword;
 
@@ -103,6 +102,57 @@ public class NeedyPeopleModel implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(familyIncome);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((needyPeoplePassword == null) ? 0 : needyPeoplePassword.hashCode());
+		result = prime * result + needyPersonId;
+		result = prime * result + ((needyPersonName == null) ? 0 : needyPersonName.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NeedyPeopleModel other = (NeedyPeopleModel) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (Double.doubleToLongBits(familyIncome) != Double.doubleToLongBits(other.familyIncome))
+			return false;
+		if (needyPeoplePassword == null) {
+			if (other.needyPeoplePassword != null)
+				return false;
+		} else if (!needyPeoplePassword.equals(other.needyPeoplePassword))
+			return false;
+		if (needyPersonId != other.needyPersonId)
+			return false;
+		if (needyPersonName == null) {
+			if (other.needyPersonName != null)
+				return false;
+		} else if (!needyPersonName.equals(other.needyPersonName))
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
+		return true;
 	}
 
 	@Override

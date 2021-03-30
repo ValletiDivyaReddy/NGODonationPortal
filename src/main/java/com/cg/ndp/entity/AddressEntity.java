@@ -126,8 +126,9 @@ public class AddressEntity {
 
 	@Override
 	public String toString() {
-		return String.format("AddressModel [addressId=%s, city=%s, state=%s, pin=%s, landmark=%s]", addressId, city,
-				state, pincode, landmark);
+		return "AddressEntity [addressId=" + addressId + ", city=" + city + ", state=" + state + ", pincode=" + pincode
+				+ ", landmark=" + landmark + "]";
 	}
+
 
 }

@@ -3,19 +3,26 @@ package com.cg.ndp.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cg.ndp.dto.NeedyPeopleDto;
+
 import com.cg.ndp.entity.NeedyPeopleEntity;
+
 import com.cg.ndp.exception.DuplicateNeedyPersonException;
-import com.cg.ndp.exception.NoSuchNeedyPeopleException;
+import com.cg.ndp.exception.NoSuchNeedyException;
 import com.cg.ndp.model.NeedyPeopleModel;
+import com.cg.ndp.model.NeedyRequestModel;
 import com.cg.ndp.repo.NeedyPeopleRepo;
+import com.cg.ndp.repo.NeedyRequestRepo;
 
-
+@Service
 public class NeedyPeopleServiceImpl implements INeedyPeopleService {
 
 	@Autowired
-	private NeedyPeopleRepo needyRepo;
+	private NeedyPeopleRepo needyPeopleRepo;
+	@Autowired
+	private NeedyRequestRepo needyRequestRepo;
 
 	@Autowired
 	private EMParser parser;
@@ -25,10 +32,10 @@ public class NeedyPeopleServiceImpl implements INeedyPeopleService {
 		Boolean status = false;
 
 		if (person != null) {
-			if (needyRepo.existsById(person.getNeedyPersonId())) {
+			if (needyPeopleRepo.existsById(person.getNeedyPersonId())) {
 				throw new DuplicateNeedyPersonException("Person already Exists");
 			}
-			person = parser.parse(needyRepo.save(parser.parse(person)));
+			person = parser.parse(needyPeopleRepo.save(parser.parse(person)));
 			status = true;
 
 		}
@@ -37,27 +44,34 @@ public class NeedyPeopleServiceImpl implements INeedyPeopleService {
 	}
 
 	@Override
-	public boolean login(NeedyPeopleDto person)throws NoSuchNeedyPeopleException {
+	public boolean login(NeedyPeopleDto person) throws NoSuchNeedyException {
 		boolean status = false;
-		Optional<NeedyPeopleEntity> dt=needyRepo.findById(person.getNeedyPersonId());
-		if(dt.isPresent()) {
-			if(dt.get().getNeedyPeoplePassword().equals(person.getNeedyPeoplePassword())){
-				status = true;	
+		Optional<NeedyPeopleEntity> dt = needyPeopleRepo.findById(person.getNeedyPersonId());
+		if (dt.isPresent()) {
+			if (dt.get().getNeedyPeoplePassword().equals(person.getNeedyPeoplePassword())) {
+				status = true;
 			}
 		} else {
-			throw new NoSuchNeedyPeopleException("Invalid password / user");
+			throw new NoSuchNeedyException("Invalid password / user");
 		}
 		return status;
 	}
 
 	@Override
-	public boolean requestForHelp(NeedyPeopleModel person) {
+	public boolean requestForHelp(NeedyRequestModel person) throws DuplicateNeedyPersonException {
 		// TODO Auto-generated method stub
-		
-		
-		return false;
+		Boolean status = false;
+
+		if (person != null) {
+			if (needyRequestRepo.existsById(person.getNeedyPersonId())) {
+				throw new DuplicateNeedyPersonException("Person already Exists");
+			}
+			person = parser.parse(needyRequestRepo.save(parser.parse(person)));
+			status = true;
+
+		}
+
+		return status;
 	}
 
-
-	
 }
