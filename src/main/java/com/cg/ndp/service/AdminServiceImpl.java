@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.ndp.dto.AdminDto;
 import com.cg.ndp.entity.AdminEntity;
 import com.cg.ndp.entity.DonationDistributionEntity;
 import com.cg.ndp.entity.DonationDistributionStatus;
@@ -92,7 +93,6 @@ public class AdminServiceImpl implements IAdminService {
 	@Transactional
 	@Override
 	public EmployeeModel modifyEmployee(EmployeeModel employee) throws NoSuchEmployeeException {
-		
 		if (employee != null) {
 			if (!empRepo.existsById(employee.getEmployeeId())) {
 				throw new NoSuchEmployeeException("No Such Employee");
@@ -178,7 +178,7 @@ public class AdminServiceImpl implements IAdminService {
 	}
 
 	@Override
-	public boolean login(AdminModel admin) throws NoSuchAdminException {
+	public boolean login(AdminDto admin) throws NoSuchAdminException {
 		boolean status = false;
 		Optional<AdminEntity> ad=adminRepo.findById(admin.getAdminId());
 		if(ad.isPresent()) {

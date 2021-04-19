@@ -7,6 +7,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 public class AdminModel implements Serializable {
@@ -19,7 +21,7 @@ public class AdminModel implements Serializable {
 	@NotNull(message = "Admin UserName cannot be omitted")
 	private String adminUsername;
 
-//	@JsonIgnore
+	@JsonIgnore
 	@Pattern(regexp="(?=.\\d)(?=.[a-z])(?=.*[A-Z]).{8,}", message="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters\" required")
 	@NotNull(message="Admin Password cannot be omitted")
 	private String adminPassword;

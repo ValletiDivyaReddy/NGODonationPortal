@@ -41,7 +41,6 @@ public class DonorController {
 			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
 			donor = donorService.add(donor);
-			// user=userService.add(user);
 			response = new ResponseEntity<>("Donor is successfully added", HttpStatus.CREATED);
 		}
 		return response;

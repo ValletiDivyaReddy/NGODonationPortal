@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.cg.ndp.dto.AdminDto;
 import com.cg.ndp.entity.AddressEntity;
 import com.cg.ndp.entity.DonationDistributionStatus;
 import com.cg.ndp.entity.DonationItemEntity;
@@ -28,7 +29,6 @@ import com.cg.ndp.exception.NoSuchAdminException;
 import com.cg.ndp.exception.NoSuchDonationException;
 import com.cg.ndp.exception.NoSuchEmployeeException;
 import com.cg.ndp.model.AddressModel;
-import com.cg.ndp.model.AdminModel;
 import com.cg.ndp.model.DonationDistributionModel;
 import com.cg.ndp.model.EmployeeModel;
 
@@ -53,7 +53,7 @@ public class AdminServiceImplTest {
 	@Test
 	@DisplayName("Admin login")
 	void testLogin() throws NoSuchAdminException {
-		AdminModel admin = new AdminModel(1, "divya", "divya@123");
+		AdminDto admin = new AdminDto(101, "divya@123");
 		Mockito.when(adminService.login(admin)).thenReturn(true);
 		assertTrue(adminService.login(admin));
 

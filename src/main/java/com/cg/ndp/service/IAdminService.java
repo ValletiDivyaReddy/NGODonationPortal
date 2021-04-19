@@ -2,6 +2,7 @@ package com.cg.ndp.service;
 
 import java.util.List;
 
+import com.cg.ndp.dto.AdminDto;
 import com.cg.ndp.exception.DuplicateAdminException;
 import com.cg.ndp.exception.DuplicateDonationException;
 import com.cg.ndp.exception.DuplicateEmployeeException;
@@ -23,7 +24,7 @@ public interface IAdminService {
 	public boolean approveDonation(DonationDistributionModel distribution) throws DuplicateDonationException, NoSuchDonationException;
 
 	boolean addAdmin(AdminModel admin) throws DuplicateAdminException;
-	public boolean login(AdminModel admin) throws NoSuchAdminException;
+	public boolean login(AdminDto admin) throws NoSuchAdminException;
 	
 
 }
