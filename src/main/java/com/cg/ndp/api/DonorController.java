@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.ndp.dto.DonorDto;
+
 import com.cg.ndp.exception.DuplicateDonorException;
 import com.cg.ndp.exception.NoSuchDonorException;
+
 import com.cg.ndp.model.DonationModel;
 import com.cg.ndp.model.DonorModel;
 import com.cg.ndp.service.IDonorService;
@@ -70,6 +73,16 @@ public class DonorController {
 		}
 
 		return response;
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<Boolean> login(@RequestBody DonorDto employee) throws NoSuchDonorException {
+		return new ResponseEntity<Boolean>(donorService.login(employee), HttpStatus.OK);
+	}
+	
+	@GetMapping("/findalldonors")
+	public ResponseEntity<List<DonorModel>> findAllDonors() throws NoSuchDonorException {
+		return new ResponseEntity<List<DonorModel>>(donorService.findAllDonors(), HttpStatus.OK);
 	}
 
 }

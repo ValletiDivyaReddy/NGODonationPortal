@@ -1,6 +1,7 @@
 package com.cg.ndp.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.ndp.dto.DonorDto;
 import com.cg.ndp.entity.DonorEntity;
 import com.cg.ndp.exception.DuplicateDonorException;
 import com.cg.ndp.exception.NoSuchDonorException;
@@ -84,12 +86,15 @@ public class DonorServiceImpl implements IDonorService {
 	}
 
 	@Override
-	public boolean login(DonorModel donor) throws NoSuchDonorException {
+	public Boolean login(DonorDto donor) throws NoSuchDonorException {
 		boolean status = false;
-		if (donorRepo.findById(donor.getDonorId()).orElse(null).getDonorPassword() == donor.getDonorPassword()) {
-			status = true;
+		Optional<DonorEntity> ad=donorRepo.findById(donor.getDonorId());
+		if(ad.isPresent()) {
+			if (ad.get().getDonorPassword().equals(donor.getDonorPassword())) {
+				status = true;
+			}
 		} else {
-			throw new NoSuchDonorException("Invalid password / user");
+			throw new NoSuchDonorException("Invalid username/ password");
 		}
 		return status;
 	}
@@ -103,6 +108,11 @@ public class DonorServiceImpl implements IDonorService {
 			donorModel = parser.parse(donorRepo.save(parser.parse(donorModel)));
 		}
 		return donorModel;
+	}
+
+	@Override
+	public List<DonorModel> findAllDonors() {
+		return donorRepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
 	}
 
 	

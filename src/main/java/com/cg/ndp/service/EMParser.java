@@ -13,7 +13,6 @@ import com.cg.ndp.entity.DonorEntity;
 import com.cg.ndp.entity.EmployeeEntity;
 import com.cg.ndp.entity.NeedyPeopleEntity;
 import com.cg.ndp.entity.NeedyRequest;
-import com.cg.ndp.entity.UserEntity;
 import com.cg.ndp.model.AddressModel;
 import com.cg.ndp.model.AdminModel;
 import com.cg.ndp.model.DonationDistributionModel;
@@ -23,7 +22,6 @@ import com.cg.ndp.model.DonorModel;
 import com.cg.ndp.model.EmployeeModel;
 import com.cg.ndp.model.NeedyPeopleModel;
 import com.cg.ndp.model.NeedyRequestModel;
-import com.cg.ndp.model.UserModel;
 import com.cg.ndp.repo.DonationItemRepo;
 import com.cg.ndp.repo.DonorRepo;
 
@@ -155,14 +153,5 @@ public class EMParser {
 						source.getAddress());
 	}
 
-	public UserModel parse(UserEntity source) {
-		return source == null ? null : new UserModel(source.getDonorId(), source.getPassword(), source.getRole());
-
-	}
-
-	public UserEntity parse(UserModel source) {
-		return source == null ? null : new UserEntity(source.getUserId(), source.getPassword(), source.getRole());
-
-	}
 
 }
