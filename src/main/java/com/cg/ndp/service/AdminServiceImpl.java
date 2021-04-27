@@ -141,6 +141,11 @@ public class AdminServiceImpl implements IAdminService {
 	public List<EmployeeModel> findAllEmployee() throws NoSuchEmployeeException {
 		return empRepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<DonationDistributionModel> findAllDistributions () {
+		return donationRepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
+	}
 
 	@Override
 	public boolean approveDonation(DonationDistributionModel distribution)
@@ -191,4 +196,10 @@ public class AdminServiceImpl implements IAdminService {
 		return status;
 	}
 
+	@Override
+	public boolean signOut(AdminDto admin) throws NoSuchAdminException {
+		return true;
+	}
+
+	
 }

@@ -18,7 +18,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.cg.ndp.dto.AdminDto;
-import com.cg.ndp.entity.AddressEntity;
 import com.cg.ndp.entity.DonationDistributionStatus;
 import com.cg.ndp.entity.DonationItemEntity;
 import com.cg.ndp.entity.EmployeeEntity;
@@ -150,7 +149,7 @@ public class AdminServiceImplTest {
 	@Test
 	void testApproveDonation() throws DuplicateDonationException, NoSuchDonationException {
 
-		AddressEntity a1 = new AddressEntity(10001, "Bangalore", "Karnataka", "714323", "MGRoad");
+		AddressModel a1 = new AddressModel(10001, "Bangalore", "Karnataka", "714323", "MGRoad");
 		String name = "divya";
 		NeedyPeopleEntity model = new NeedyPeopleEntity(1, "divya", "89654334212", 89000, "Divya@123", a1);
 		DonationItemEntity donat = null;

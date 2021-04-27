@@ -24,7 +24,9 @@ public interface IAdminService {
 	public boolean approveDonation(DonationDistributionModel distribution) throws DuplicateDonationException, NoSuchDonationException;
 
 	boolean addAdmin(AdminModel admin) throws DuplicateAdminException;
+	boolean signOut(AdminDto admin) throws NoSuchAdminException;
 	public boolean login(AdminDto admin) throws NoSuchAdminException;
+	public List<DonationDistributionModel> findAllDistributions();
 	
 
 }

@@ -55,7 +55,7 @@ public class DonorController {
 		return ResponseEntity.ok(donorService.getAllDonations(donorId));
 	}
 
-	@PutMapping("/{donorId}/modifydonor")
+	@PutMapping("/modifydonor/{donorId}")
 	public ResponseEntity<String> updateDonor(@RequestBody DonorModel donor, @PathVariable("donorId") int donorId)
 			throws NoSuchDonorException {
 		donor = donorService.modifyPassword(donor, donor.getDonorId());

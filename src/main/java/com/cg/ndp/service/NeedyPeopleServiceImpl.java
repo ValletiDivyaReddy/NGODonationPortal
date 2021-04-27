@@ -1,6 +1,8 @@
 package com.cg.ndp.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,7 +61,6 @@ public class NeedyPeopleServiceImpl implements INeedyPeopleService {
 
 	@Override
 	public boolean requestForHelp(NeedyRequestModel person) throws DuplicateNeedyPersonException {
-		// TODO Auto-generated method stub
 		Boolean status = false;
 
 		if (person != null) {
@@ -72,6 +73,16 @@ public class NeedyPeopleServiceImpl implements INeedyPeopleService {
 		}
 
 		return status;
+	}
+
+	@Override
+	public List<NeedyRequestModel> findAllRequests() throws NoSuchNeedyException {
+		return needyRequestRepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
+	}
+
+	@Override
+	public boolean signOut(NeedyPeopleDto person) throws NoSuchNeedyException {
+		return true;
 	}
 
 }

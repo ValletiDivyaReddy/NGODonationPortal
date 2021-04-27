@@ -6,8 +6,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class EmployeeModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +27,7 @@ public class EmployeeModel implements Serializable {
 	@NotNull(message = "username cannot be omitted")
 	private String username;
 
-	@JsonIgnore
+	
 	@Pattern(regexp = "(?=.\\d)(?=.[a-z])(?=.*[A-Z]).{8,}", message = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters\" required")
 	private String password;
 

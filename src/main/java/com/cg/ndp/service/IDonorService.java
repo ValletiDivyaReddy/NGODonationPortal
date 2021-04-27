@@ -18,7 +18,9 @@ public interface IDonorService {
 
 	DonorModel getById(int donorId) throws NoSuchDonorException;
 
-	public Boolean login(DonorDto employee) throws NoSuchDonorException;
+	public Boolean login(DonorDto donor) throws NoSuchDonorException;
+	
+	public Boolean signOut(DonorDto donor) throws NoSuchDonorException;
 	
 	public List<DonorModel> findAllDonors();
 

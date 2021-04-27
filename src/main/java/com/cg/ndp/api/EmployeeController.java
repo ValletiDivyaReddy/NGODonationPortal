@@ -43,10 +43,10 @@ public class EmployeeController {
 		return new ResponseEntity<Boolean>(employeeService.addNeedyPerson(person), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/removeneedypeople")
-	public ResponseEntity<Boolean> removeNeedyPeople(@RequestBody NeedyPeopleModel person)
+	@DeleteMapping("/removeneedypeople/{id}")
+	public ResponseEntity<Boolean> removeNeedyPeople(@PathVariable Integer id)
 			throws NoSuchNeedyPeopleException {
-		return new ResponseEntity<Boolean>(employeeService.removeNeedyPerson(person), HttpStatus.OK);
+		return new ResponseEntity<Boolean>(employeeService.removeNeedyPerson(id), HttpStatus.OK);
 	}
 
 	@GetMapping("/findallneedypeople")
@@ -70,5 +70,5 @@ public class EmployeeController {
 	public ResponseEntity<Boolean> login(@RequestBody EmployeeDto employee) throws NoSuchEmployeeException {
 		return new ResponseEntity<Boolean>(employeeService.login(employee), HttpStatus.OK);
 	}
-
+	
 }

@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.cg.ndp.model.AddressModel;
 
 @Entity
 @Table(name = "needypeople")
@@ -30,8 +32,9 @@ public class NeedyPeopleEntity implements Serializable {
 
 	@Column(name = "needyPeoplePassword")
 	private String needyPeoplePassword;
-	@OneToOne
-	private AddressEntity address;
+	
+	@Embedded
+	private AddressModel address;
 
 	@OneToMany(mappedBy = "needyPersonId")
 	public Set<NeedyPeopleEntity> getAllNeedyPeople;
@@ -40,8 +43,9 @@ public class NeedyPeopleEntity implements Serializable {
 
 	}
 
+
 	public NeedyPeopleEntity(int needyPersonId, String needyPersonName, String phone, double familyIncome,
-			String needyPeoplePassword, AddressEntity address) {
+			String needyPeoplePassword, AddressModel address) {
 		super();
 		this.needyPersonId = needyPersonId;
 		this.needyPersonName = needyPersonName;
@@ -51,65 +55,78 @@ public class NeedyPeopleEntity implements Serializable {
 		this.address = address;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+
+	
 
 	public int getNeedyPersonId() {
 		return needyPersonId;
 	}
 
-	public String getNeedyPersonName() {
-		return needyPersonName;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public double getFamilyIncome() {
-		return familyIncome;
-	}
-
-	public AddressEntity getAddress() {
-		return address;
-	}
 
 	public void setNeedyPersonId(int needyPersonId) {
 		this.needyPersonId = needyPersonId;
 	}
 
+
+	public String getNeedyPersonName() {
+		return needyPersonName;
+	}
+
+
 	public void setNeedyPersonName(String needyPersonName) {
 		this.needyPersonName = needyPersonName;
 	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
+
+	public double getFamilyIncome() {
+		return familyIncome;
+	}
+
+
 	public void setFamilyIncome(double familyIncome) {
 		this.familyIncome = familyIncome;
 	}
 
-	public void setAddress(AddressEntity address) {
-		this.address = address;
-	}
-
-	public Set<NeedyPeopleEntity> getGetAllNeedyPeople() {
-		return getAllNeedyPeople;
-	}
-
-	public void setGetAllNeedyPeople(Set<NeedyPeopleEntity> getAllNeedyPeople) {
-		this.getAllNeedyPeople = getAllNeedyPeople;
-	}
 
 	public String getNeedyPeoplePassword() {
 		return needyPeoplePassword;
 	}
 
+
 	public void setNeedyPeoplePassword(String needyPeoplePassword) {
 		this.needyPeoplePassword = needyPeoplePassword;
 	}
+
+
+	public AddressModel getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(AddressModel address) {
+		this.address = address;
+	}
+
+
+	public Set<NeedyPeopleEntity> getGetAllNeedyPeople() {
+		return getAllNeedyPeople;
+	}
+
+
+	public void setGetAllNeedyPeople(Set<NeedyPeopleEntity> getAllNeedyPeople) {
+		this.getAllNeedyPeople = getAllNeedyPeople;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -168,11 +185,13 @@ public class NeedyPeopleEntity implements Serializable {
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
-		return "NeedyPeopleEntity [needyPersonId=" + needyPersonId + ", needyPersonName=" + needyPersonName + ", phone="
-				+ phone + ", familyIncome=" + familyIncome + ", needyPeoplePassword=" + needyPeoplePassword
-				+ ", address=" + address + "]";
+		return String.format(
+				"NeedyPeopleEntity [needyPersonId=%s, needyPersonName=%s, phone=%s, familyIncome=%s, needyPeoplePassword=%s, address=%s, getAllNeedyPeople=%s]",
+				needyPersonId, needyPersonName, phone, familyIncome, needyPeoplePassword, address, getAllNeedyPeople);
 	}
+
 
 }

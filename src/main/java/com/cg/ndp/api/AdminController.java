@@ -74,6 +74,7 @@ public class AdminController {
 
 	@PostMapping("/adminlogin")
 	public ResponseEntity<Boolean> login(@RequestBody AdminDto admin) throws NoSuchAdminException {
+		System.out.println("login");
 		return new ResponseEntity<Boolean>(adminService.login(admin), HttpStatus.OK);
 	}
 
@@ -81,6 +82,11 @@ public class AdminController {
 	public ResponseEntity<Boolean> approveDonation(@RequestBody DonationDistributionModel distribution)
 			throws DuplicateDonationException, NoSuchDonationException {
 		return new ResponseEntity<Boolean>(adminService.approveDonation(distribution), HttpStatus.OK);
+	}
+	
+	@GetMapping("/findalldistributions")
+	public ResponseEntity<List<DonationDistributionModel>> findAllDistributions() {
+		return new ResponseEntity<List<DonationDistributionModel>>(adminService.findAllDistributions(), HttpStatus.OK);
 	}
 
 }

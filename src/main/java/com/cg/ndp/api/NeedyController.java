@@ -1,15 +1,17 @@
 package com.cg.ndp.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.cg.ndp.exception.DuplicateNeedyPersonException;
-
 import com.cg.ndp.exception.NoSuchNeedyException;
 import com.cg.ndp.model.NeedyPeopleModel;
 import com.cg.ndp.model.NeedyRequestModel;
@@ -18,6 +20,7 @@ import com.cg.ndp.dto.NeedyPeopleDto;
 
 @RestController
 @RequestMapping("/needy")
+@CrossOrigin(origins = "*")
 public class NeedyController {
 
 	@Autowired
@@ -37,6 +40,11 @@ public class NeedyController {
 	@PostMapping("/needyrequest")
 	public ResponseEntity<Boolean> requestForHelp(@RequestBody NeedyRequestModel person) throws DuplicateNeedyPersonException {
 		return new ResponseEntity<Boolean>(needyService.requestForHelp(person), HttpStatus.OK);
+	}
+	
+	@GetMapping("/findallrequests")
+	public ResponseEntity<List<NeedyRequestModel>> findAllNeedyPeople() throws NoSuchNeedyException {
+		return new ResponseEntity<List<NeedyRequestModel>>(needyService.findAllRequests(), HttpStatus.OK);
 	}
 
 }

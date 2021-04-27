@@ -7,8 +7,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.cg.ndp.entity.AddressEntity;
-
 public class NeedyPeopleModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +29,7 @@ public class NeedyPeopleModel implements Serializable {
 
 	@NotEmpty(message = "Address Id cannot be empty")
 	@NotNull(message = "Address Id cannot be omitted")
-	private AddressEntity address;
+	private AddressModel address;
 
 	public NeedyPeopleModel() {
 
@@ -42,7 +40,7 @@ public class NeedyPeopleModel implements Serializable {
 			@Pattern(regexp = "[1-9][0-9]{9}", message = "mobile number is expected to be 10 digits and should not start with 0") @NotNull(message = "Phone number cannot be omitted") String phone,
 			@Max(value = 100000, message = "familyIncome cannot be more than 1 lakh") double familyIncome,
 			@Pattern(regexp = "(?=.\\d)(?=.[a-z])(?=.*[A-Z]).{8,}", message = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters\" required") String needyPeoplePassword,
-			@NotEmpty(message = "Address Id cannot be empty") @NotNull(message = "Address Id cannot be omitted") AddressEntity address) {
+			@NotEmpty(message = "Address Id cannot be empty") @NotNull(message = "Address Id cannot be omitted") AddressModel address) {
 		super();
 		this.needyPersonId = needyPersonId;
 		this.needyPersonName = needyPersonName;
@@ -92,11 +90,11 @@ public class NeedyPeopleModel implements Serializable {
 		this.needyPeoplePassword = needyPeoplePassword;
 	}
 
-	public AddressEntity getAddress() {
+	public AddressModel getAddress() {
 		return address;
 	}
 
-	public void setAddress(AddressEntity address) {
+	public void setAddress(AddressModel address) {
 		this.address = address;
 	}
 
@@ -157,9 +155,9 @@ public class NeedyPeopleModel implements Serializable {
 
 	@Override
 	public String toString() {
-		return "NeedyPeopleModel [needyPersonId=" + needyPersonId + ", needyPersonName=" + needyPersonName + ", phone="
-				+ phone + ", familyIncome=" + familyIncome + ", needyPeoplePassword=" + needyPeoplePassword
-				+ ", address=" + address + "]";
+		return String.format(
+				"NeedyPeopleModel [needyPersonId=%s, needyPersonName=%s, phone=%s, familyIncome=%s, needyPeoplePassword=%s, address=%s]",
+				needyPersonId, needyPersonName, phone, familyIncome, needyPeoplePassword, address);
 	}
 
 }

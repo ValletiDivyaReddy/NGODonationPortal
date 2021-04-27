@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class DonorModel  {
 	
@@ -26,7 +26,8 @@ public class DonorModel  {
 	@NotEmpty(message="Donor UserName cannot be empty")
 	@NotNull(message="Donor UserName cannot be omitted")
 	private String donorUsername;
-	@JsonIgnore
+	
+	//@JsonIgnore
 	@Pattern(regexp="(?=.\\d)(?=.[a-z])(?=.*[A-Z]).{8,}", message="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters\" required")
 	@NotNull(message="Donor Password cannot be omitted")
 	private String donorPassword;

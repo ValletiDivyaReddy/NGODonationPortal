@@ -14,7 +14,7 @@ public interface IEmployeeService {
 
 	public boolean addNeedyPerson(NeedyPeopleModel person) throws DuplicateNeedyPersonException;
 
-	public boolean removeNeedyPerson(NeedyPeopleModel person) throws NoSuchNeedyPeopleException;
+	public boolean removeNeedyPerson(int id) throws NoSuchNeedyPeopleException;
 
 	public NeedyPeopleModel findNeedyPeopleById(int id) throws NoSuchNeedyPeopleException;
 
@@ -25,6 +25,10 @@ public interface IEmployeeService {
 	public String helpNeedyPerson(DonationDistributionModel distribute) throws DuplicateDonationException;
 
 	public boolean login(EmployeeDto employee) throws NoSuchEmployeeException;
+	
+	boolean signOut(EmployeeDto employee) throws NoSuchEmployeeException;
+
+	
 
 
 }

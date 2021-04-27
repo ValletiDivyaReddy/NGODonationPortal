@@ -115,5 +115,10 @@ public class DonorServiceImpl implements IDonorService {
 		return donorRepo.findAll().stream().map(parser::parse).collect(Collectors.toList());
 	}
 
+	@Override
+	public Boolean signOut(DonorDto donor) throws NoSuchDonorException {
+		return true;
+	}
+
 	
 }

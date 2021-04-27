@@ -60,20 +60,17 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public boolean removeNeedyPerson(NeedyPeopleModel person) throws NoSuchNeedyPeopleException {
+	public boolean removeNeedyPerson(int id) throws NoSuchNeedyPeopleException {
 		Boolean status = false;
-		if (person != null) {
-			if (needypeopleRepo.existsById(person.getNeedyPersonId())) {
-				needypeopleRepo.delete(parser.parse(person));
-				status = true;
+		if (needypeopleRepo.existsById(id)) {
+			needypeopleRepo.deleteById(id);
+			status = true;
 
 			} else {
-				throw new NoSuchNeedyPeopleException("Person " + person.getNeedyPersonId() + " is Not Exists");
+				throw new NoSuchNeedyPeopleException("Person does  Not Exists");
 			}
-		}
 		return status;
 	}
-
 	@Override
 	public NeedyPeopleModel findNeedyPeopleById(int id) throws NoSuchNeedyPeopleException {
 		if (!needypeopleRepo.existsById(id)) {
@@ -102,7 +99,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 			}
 		}
 
-		return distribute.toString();
+		return "requested for approval with id "+distribute.getDistributionId()+".";
 	}
 
 	@Override
@@ -131,5 +128,12 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		}
 		return status;
 	}
+
+
+	@Override
+	public boolean signOut(EmployeeDto employee) throws NoSuchEmployeeException {
+		return true;
+	}
+	
 
 }
